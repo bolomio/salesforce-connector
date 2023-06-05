@@ -1,0 +1,1 @@
+export const SALESFORCE_REST_API_VERSION = 'v55.0'

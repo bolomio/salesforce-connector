@@ -1,6 +1,6 @@
 {
   "name": "@bolomio/salesforce-connector",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "functions to interact with the standard salesforce api",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -11,7 +11,9 @@
     "format": "bash -c 'prettier \"**/*.{ts,tsx,js,jsx,json,yml,yaml}\" --ignore-path <(cat .gitignore .prettierignore) --write'",
     "lint": "eslint --ignore-path .eslintignore --ext .js,.ts ."
   },
-  "files": ["dist/**/*"],
+  "files": [
+    "dist/**/*"
+  ],
   "keywords": [],
   "author": "bolomio",
   "license": "ISC",

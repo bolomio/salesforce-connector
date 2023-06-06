@@ -138,6 +138,13 @@ soslQueryExample()
 
 ```
 
+## Upcoming
+
+Other features will be added that use the standard salesforce api:
+- update sobject
+- delete sobject
+- upsert sobject
+
 ## Contributing
 
 Contributions are welcome! If you encounter any issues or have suggestions for improvements, please feel free to open an issue or submit a pull request. Make sure to follow the [contribution guidelines](./CONTRIBUTING.md).

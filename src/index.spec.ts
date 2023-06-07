@@ -2,7 +2,7 @@ import { makeSalesforceConnector, SalesforceConnector } from './index'
 
 describe('index', () => {
     const connector: SalesforceConnector = makeSalesforceConnector({
-        baseUrl: 'https://koko.exameple.com',
+        baseUrl: 'https://koko.example.com',
     })
 
     it('should be able to instantiate', () => {

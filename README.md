@@ -17,7 +17,7 @@ The `@bolomio/salesforce-connector` package provides a connector that allows you
 You can install the package using npm:
 
 ```bash
-npm install @bolomio/salesforce-authorizer
+npm install @bolomio/salesforce-connector
 ```
 
 ## Usage

@@ -11,7 +11,7 @@ export function makeCreateSObject({ gotInstance }: { gotInstance: Got }) {
      *
      * @param {string} sObjectName - The name of the Salesforce object to create a record for.
      * @param {Record<string, unknown>} record - The data for the new record.
-     * @param {ExtendableOptions} - Additional options to extend the HTTP request.
+     * @param {ExtendableOptions} extendOptions - Additional options to extend the HTTP request.
      * @returns {Promise<CreateSObjectResult>} A Promise that resolves to the result of the create operation.
      */
     return async function createSObject({

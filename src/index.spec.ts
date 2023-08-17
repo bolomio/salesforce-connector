@@ -7,7 +7,9 @@ describe('index', () => {
 
     it('should be able to instantiate', () => {
         expect(connector).toHaveProperty('createSObject')
-        expect(connector).toHaveProperty('soslQuery')
+        expect(connector).toHaveProperty('updateSObject')
+        expect(connector).toHaveProperty('upsertSObjectByExternalId')
         expect(connector).toHaveProperty('soqlQuery')
+        expect(connector).toHaveProperty('soslQuery')
     })
 })

@@ -9,6 +9,8 @@ The `@bolomio/salesforce-connector` package provides a connector that allows you
 
 - Interact with standard salesforce api
 - Create SObject Record
+- Update SObject Record
+- Upsert SObject Record by External ID
 - Execute SOQL query
 - Execute SOSL query
 
@@ -85,7 +87,7 @@ async function createSObjectExample() {
   }
 
   try {
-    const result = await connector.createSObject(sObjectName, record)
+    const result = await connector.createSObject({ sObjectName, record })
     console.log('Record created successfully:', result)
   } catch (error) {
     console.error('Error creating record:', error)
@@ -93,6 +95,51 @@ async function createSObjectExample() {
 }
 
 createSObjectExample()
+```
+
+#### updateSObject
+Update a record of a specific Salesforce object using the provided data.
+```javascript
+async function updateSObjectExample() {
+  const sObjectName = 'Account'
+  const sObjectId = '0011t00000B0lOMAAZ'
+  const record = {
+    Name: 'Acme Corporation',
+    Industry: 'Technology',
+  }
+
+  try {
+    await connector.updateSObject({ sObjectName, sObjectId, record })
+    console.log('Record updated successfully')
+  } catch (error) {
+    console.error('Error updating record:', error)
+  }
+}
+
+updateSObjectExample()
+```
+
+#### upsertSObjectByExternalId
+Insert or Update (Upsert) a Record Using an External ID.
+```javascript
+async function upsertSObjectByExternalIdExample() {
+  const sObjectName = 'Account'
+  const sOBjectExternalIdFieldName = 'AccountExternalId__c'
+  const externalId = 'Account-123'
+  const record = {
+    Name: 'Acme Corporation',
+    Industry: 'Technology',
+  }
+
+  try {
+    const result = await connector.upsertSObjectByExternalId({ sObjectName, sOBjectExternalIdFieldName, externalId, record })
+    console.log('Record upserted successfully:', result)
+  } catch (error) {
+    console.error('Error upserting record:', error)
+  }
+}
+
+upsertSObjectByExternalIdExample()
 ```
 
 #### soqlQuery
@@ -103,7 +150,7 @@ async function soqlQueryExample() {
   const queryStatement = 'SELECT Id, Name, Industry FROM Account WHERE Industry = \'Technology\''
 
   try {
-    const result = await connector.soqlQuery(queryStatement)
+    const result = await connector.soqlQuery({ queryStatement })
     console.log('Query results:', result)
   } catch (error) {
     console.error('Error executing SOQL query:', error)
@@ -127,7 +174,7 @@ async function soslQueryExample() {
     }
 
   try {
-    const result = await connector.soslQuery(queryConfiguration)
+    const result = await connector.soslQuery({ queryConfiguration })
     console.log('Query results:', result)
   } catch (error) {
     console.error('Error executing SOSL query:', error)
@@ -141,9 +188,8 @@ soslQueryExample()
 ## Upcoming
 
 Other features will be added that use the standard salesforce api:
-- update sobject
-- delete sobject
-- upsert sobject
+- [delete sobject](https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/dome_delete_record.htm)
+- [composite api support](https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_composite_composite.htm)
 
 ## Contributing
 

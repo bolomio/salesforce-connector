@@ -3,7 +3,7 @@ import type { ConnectorOptions } from './types'
 import { makeSoqlQuery } from './operations/soql-query'
 import { makeSoslQuery } from './operations/sosl-query'
 import { makeUpdateSObject } from './operations/update-sobject'
-import { makeUpsertSObjectByExternalId } from './operations/upsert-sobject'
+import { makeUpsertSObjectByExternalId } from './operations/upsert-sobject-by-external-id'
 
 import type { Got } from 'got'
 import got from 'got'
@@ -47,9 +47,10 @@ export function makeSalesforceConnector(options: ConnectorOptions) {
          * Implements this api:
          * @link https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/dome_update_fields.htm
          * @param {string} sObjectName - The name of the Salesforce object to update a record for.
+         * @param {string} recordId - The ID of the record that will be updated.
          * @param {Record<string, unknown>} record - The data for the record.
          * @param {ExtendableOptions} extendOptions - Additional options to extend the HTTP request.
-         * @returns {Promise<void>} Returns 204 on successful updates.
+         * @returns {Promise<void>} No returns for successful operations, as Salesforce returns 204 - No Content.
          */
         updateSObject: makeUpdateSObject({ gotInstance }),
         /**
@@ -58,7 +59,7 @@ export function makeSalesforceConnector(options: ConnectorOptions) {
          * Implements this api:
          * @link https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/dome_upsert.htm
          * @param {string} sObjectName - The name of the Salesforce object to create or update a record for.
-         * @param {string} sObjectField - The field on the sObject where the external id is stored.
+         * @param {string} sObjectFieldName - The field on the sObject where the external id is stored.
          * @param {string} externalId - The external id used on the upsert.
          * @param {Record<string, unknown>} record - The data for the record.
          * @param {ExtendableOptions} extendOptions - Additional options to extend the HTTP request.

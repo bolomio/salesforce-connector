@@ -12,10 +12,10 @@ beforeAll(() => {
 })
 
 const sObjectName = 'Account'
-const sObjectField = 'AccountExternalId'
+const sObjectFieldName = 'AccountExternalId'
 const externalId = 'Account-123'
 const baseUrl = 'https://bolo.example.com/'
-const path = `/services/data/${SALESFORCE_REST_API_VERSION}/sobjects/${sObjectName}/${sObjectField}/${externalId}`
+const path = `/services/data/${SALESFORCE_REST_API_VERSION}/sobjects/${sObjectName}/${sObjectFieldName}/${externalId}`
 
 describe('upsertSObject', () => {
     const record = {
@@ -40,7 +40,7 @@ describe('upsertSObject', () => {
 
         const result = await upsertSObjectByExternalId({
             sObjectName,
-            sObjectField,
+            sObjectFieldName,
             externalId,
             record,
         })
@@ -62,7 +62,7 @@ describe('upsertSObject', () => {
             async () =>
                 await upsertSObjectByExternalId({
                     sObjectName,
-                    sObjectField,
+                    sObjectFieldName,
                     externalId,
                     record,
                 })

@@ -10,9 +10,9 @@ beforeAll(() => {
 })
 
 const sObjectName = 'Account'
-const sObjectId = '0010A000000aAAaAAA'
+const recordId = '0010A000000aAAaAAA'
 const baseUrl = 'https://bolo.example.com/'
-const path = `/services/data/${SALESFORCE_REST_API_VERSION}/sobjects/${sObjectName}/${sObjectId}`
+const path = `/services/data/${SALESFORCE_REST_API_VERSION}/sobjects/${sObjectName}/${recordId}`
 
 describe('updateSObject', () => {
     const record = {
@@ -28,7 +28,7 @@ describe('updateSObject', () => {
     it('should update sobject in salesforce', async () => {
         const scope = nock(baseUrl).patch(path).reply(204)
 
-        await updateSObject({ sObjectName, sObjectId, record })
+        await updateSObject({ sObjectName, recordId, record })
 
         expect(scope.isDone()).toBe(true)
     })
@@ -36,7 +36,7 @@ describe('updateSObject', () => {
         nock(baseUrl).patch(path).reply(500)
 
         await expect(
-            async () => await updateSObject({ sObjectName, sObjectId, record })
+            async () => await updateSObject({ sObjectName, recordId, record })
         ).rejects.toMatchInlineSnapshot(`[HTTPError: Response code 500 (Internal Server Error)]`)
     })
 })

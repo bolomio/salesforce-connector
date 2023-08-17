@@ -102,14 +102,14 @@ Update a record of a specific Salesforce object using the provided data.
 ```javascript
 async function updateSObjectExample() {
   const sObjectName = 'Account'
-  const sObjectId = '0011t00000B0lOMAAZ'
+  const recordId = '0011t00000B0lOMAAZ'
   const record = {
     Name: 'Acme Corporation',
     Industry: 'Technology',
   }
 
   try {
-    await connector.updateSObject({ sObjectName, sObjectId, record })
+    await connector.updateSObject({ sObjectName, recordId, record })
     console.log('Record updated successfully')
   } catch (error) {
     console.error('Error updating record:', error)
@@ -124,7 +124,7 @@ Insert or Update (Upsert) a Record Using an External ID.
 ```javascript
 async function upsertSObjectByExternalIdExample() {
   const sObjectName = 'Account'
-  const sOBjectExternalIdFieldName = 'AccountExternalId__c'
+  const sObjectFieldName = 'AccountExternalId__c'
   const externalId = 'Account-123'
   const record = {
     Name: 'Acme Corporation',
@@ -132,7 +132,7 @@ async function upsertSObjectByExternalIdExample() {
   }
 
   try {
-    const result = await connector.upsertSObjectByExternalId({ sObjectName, sOBjectExternalIdFieldName, externalId, record })
+    const result = await connector.upsertSObjectByExternalId({ sObjectName, sObjectFieldName, externalId, record })
     console.log('Record upserted successfully:', result)
   } catch (error) {
     console.error('Error upserting record:', error)

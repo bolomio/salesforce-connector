@@ -9,8 +9,10 @@ export function makeUpsertSObjectByExternalId({ gotInstance }: { gotInstance: Go
     /**
      * Insert or Update (Upsert) a Record Using an External ID
      *
+     * Implements this api:
+     * @link https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/dome_upsert.htm
      * @param {string} sObjectName - The name of the Salesforce object to create or update a record for.
-     * @param {string} sObjectField - The field on the sObject where the external id is stored.
+     * @param {string} sObjectFieldName - The field on the sObject where the external id is stored.
      * @param {string} externalId - The external id used on the upsert.
      * @param {Record<string, unknown>} record - The data for the record.
      * @param {ExtendableOptions} extendOptions - Additional options to extend the HTTP request.
@@ -18,13 +20,13 @@ export function makeUpsertSObjectByExternalId({ gotInstance }: { gotInstance: Go
      */
     return async function upsertSObjectByExternalId({
         sObjectName,
-        sObjectField,
+        sObjectFieldName,
         externalId,
         record,
         extendOptions = {},
     }: {
         sObjectName: string
-        sObjectField: string
+        sObjectFieldName: string
         externalId: string
         record: Record<string, unknown>
         extendOptions?: ExtendableOptions
@@ -40,7 +42,7 @@ export function makeUpsertSObjectByExternalId({ gotInstance }: { gotInstance: Go
         }
 
         const response = (await got.patch(
-            `services/data/${SALESFORCE_REST_API_VERSION}/sobjects/${sObjectName}/${sObjectField}/${externalId}`,
+            `services/data/${SALESFORCE_REST_API_VERSION}/sobjects/${sObjectName}/${sObjectFieldName}/${externalId}`,
             options
         )) as Response<UpsertSObjectResult>
 

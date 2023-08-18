@@ -102,7 +102,7 @@ async function compositeExample() {
   }
 }
 
-createSObjectExample()
+compositeExample()
 ```
 
 

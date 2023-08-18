@@ -9,6 +9,9 @@ export function makeCreateSObject({ gotInstance }: { gotInstance: Got }) {
     /**
      * Creates a new record of a specific Salesforce object using the provided data.
      *
+     * Implements this api:
+     * @link https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/dome_sobject_create.htm
+     *
      * @param {string} sObjectName - The name of the Salesforce object to create a record for.
      * @param {Record<string, unknown>} record - The data for the new record.
      * @param {ExtendableOptions} extendOptions - Additional options to extend the HTTP request.

@@ -90,13 +90,17 @@ async function compositeExample() {
           queryStatement: 'SELECT Id FROM Account LIMIT 1',
         }),
         connector.compositeRequests.createSObject({
-          record: { LastName: 'Koko', AccountId: '@{reference_id_account_1.id}' },
+          record: {
+            LastName: 'Koko',
+            AccountId: '@{reference_id_account_1.records[0].Id}',
+          },
           sObjectName: 'Contact',
           referenceId: 'reference_id_contact_1',
         }),
       ],
     })
-    console.log('composite executed successfully:', result)
+    console.log('1 composite executed successfully:', result.compositeResponse[0])
+    console.log('2 composite executed successfully:', result.compositeResponse[1])
   } catch (error) {
     console.error('Error executing composite:', error)
   }

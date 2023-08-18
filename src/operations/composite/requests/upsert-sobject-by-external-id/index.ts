@@ -43,7 +43,7 @@ export function makeCreateCompositeSubRequestUpsertSObjectByExternalId({
             httpHeaders: { ...got.defaults.options.headers, 'content-type': 'application/json' },
             method: 'PATCH',
             referenceId,
-            url: `services/data/${SALESFORCE_REST_API_VERSION}/sobjects/${sObjectName}/${sObjectFieldName}/${externalId}`,
+            url: `/services/data/${SALESFORCE_REST_API_VERSION}/sobjects/${sObjectName}/${sObjectFieldName}/${externalId}`,
         }
     }
 }

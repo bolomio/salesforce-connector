@@ -37,7 +37,7 @@ export function makeCreateCompositeSubRequestUpdateSObject({ gotInstance }: { go
             httpHeaders: { ...got.defaults.options.headers, 'content-type': 'application/json' },
             method: 'PATCH',
             referenceId,
-            url: `services/data/${SALESFORCE_REST_API_VERSION}/sobjects/${sObjectName}/${recordId}`,
+            url: `/services/data/${SALESFORCE_REST_API_VERSION}/sobjects/${sObjectName}/${recordId}`,
         }
     }
 }

@@ -31,7 +31,7 @@ export function makeCreateCompositeSubRequestSoqlQuery({ gotInstance }: { gotIns
             httpHeaders: { ...got.defaults.options.headers, 'content-type': 'application/json' },
             method: 'GET',
             referenceId,
-            url: `services/data/${SALESFORCE_REST_API_VERSION}/query/?q=${queryStatement}`,
+            url: `/services/data/${SALESFORCE_REST_API_VERSION}/query/?q=${queryStatement}`,
         }
     }
 }

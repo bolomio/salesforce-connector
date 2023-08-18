@@ -40,7 +40,7 @@ describe('createCompositeSubRequestCreateSObject', () => {
               },
               "method": "POST",
               "referenceId": "koko",
-              "url": "services/data/v55.0/sobjects/Account",
+              "url": "/services/data/v55.0/sobjects/Account",
             }
         `)
     })

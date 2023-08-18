@@ -31,7 +31,7 @@ describe('createCompositeSubRequestUpdateSObject', () => {
               },
               "method": "GET",
               "referenceId": "koko",
-              "url": "services/data/v55.0/query/?q=SELECT Id FROM Account LIMIT 1",
+              "url": "/services/data/v55.0/query/?q=SELECT Id FROM Account LIMIT 1",
             }
         `)
     })

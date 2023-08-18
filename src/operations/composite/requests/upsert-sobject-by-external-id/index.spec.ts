@@ -43,7 +43,7 @@ describe('createCompositeSubRequestUpdateSObject', () => {
               },
               "method": "PATCH",
               "referenceId": "koko",
-              "url": "services/data/v55.0/sobjects/Account/Koko_External__c/koko-id",
+              "url": "/services/data/v55.0/sobjects/Account/Koko_External__c/koko-id",
             }
         `)
     })

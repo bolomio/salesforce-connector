@@ -11,6 +11,7 @@ The `@bolomio/salesforce-connector` package provides a connector that allows you
 - Create SObject Record
 - Update SObject Record
 - Upsert SObject Record by External ID
+- Execute Composite Request
 - Execute SOQL query
 - Execute SOSL query
 
@@ -75,6 +76,39 @@ Make sure to replace `'https://your-salesforce-instance.com/'` with the actual S
 
 **Note: to receive an access token you can use the [@bolomio/salesforce-authorizer](https://www.npmjs.com/package/@bolomio/salesforce-authorizer)**
 ### Functions
+
+#### composite
+Executes a collection of standard api requests
+```javascript
+async function compositeExample() {
+  try {
+    const result = await connector.composite({
+      allOrNone: true,
+      compositeRequest: [
+        connector.compositeRequests.soqlQuery({
+          referenceId: 'reference_id_account_1',
+          queryStatement: 'SELECT Id FROM Account LIMIT 1',
+        }),
+        connector.compositeRequests.createSObject({
+          record: {
+            LastName: 'Koko',
+            AccountId: '@{reference_id_account_1.records[0].Id}',
+          },
+          sObjectName: 'Contact',
+          referenceId: 'reference_id_contact_1',
+        }),
+      ],
+    })
+    console.log('1 composite executed successfully:', result.compositeResponse[0])
+    console.log('2 composite executed successfully:', result.compositeResponse[1])
+  } catch (error) {
+    console.error('Error executing composite:', error)
+  }
+}
+
+compositeExample()
+```
+
 
 #### createSObject
 Create a new record of a specific Salesforce object using the provided data.
@@ -189,7 +223,10 @@ soslQueryExample()
 
 Other features will be added that use the standard salesforce api:
 - [delete sobject](https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/dome_delete_record.htm)
-- [composite api support](https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_composite_composite.htm)
+- [composite graph support](https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_composite_graph.htm)
+- [composite tree support](https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_composite_sobject_tree.htm)
+- [composite sobject support](https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_composite_sobjects_collections.htm)
+- [composite batch support](https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_composite_batch.htm)
 
 ## Contributing
 

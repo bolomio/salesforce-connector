@@ -14,6 +14,7 @@ The `@bolomio/salesforce-connector` package provides a connector that allows you
 - Execute Composite Request
 - Execute SOQL query
 - Execute SOSL query
+- Interact with custom apex rest api.
 
 ## Installation
 
@@ -221,6 +222,7 @@ soslQueryExample()
 
 #### apexRest
 Execute a http request against a custom apex rest endpoint.
+[Salesforce Documentation](https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_rest.htm)
 
 **Get Example**
 ```javascript

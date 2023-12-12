@@ -9,6 +9,7 @@ import { makeComposite } from './operations/composite'
 import { makeCreateCompositeSubRequestUpdateSObject } from './operations/composite/requests/update-sobject'
 import { makeCreateCompositeSubRequestUpsertSObjectByExternalId } from './operations/composite/requests/upsert-sobject-by-external-id'
 import { makeCreateCompositeSubRequestSoqlQuery } from './operations/composite/requests/soql-query'
+import { makeApexRest } from './operations/apex-rest'
 
 import type { Got } from 'got'
 import got from 'got'
@@ -22,16 +23,22 @@ import got from 'got'
 export function makeSalesforceConnector(options: ConnectorOptions) {
     const gotInstance: Got = got.extend({
         prefixUrl: options.baseUrl,
-        headers: {
-            // if access token has been passed, use it in the header
-            ...('accessToken' in options && options.accessToken
-                ? { Authorization: `Bearer ${options.accessToken}` }
-                : {}),
-            ...options.headers,
-        },
+        headers: options.headers,
         timeout: options.timeout,
         retry: options.retry,
-        hooks: options.hooks,
+        hooks: {
+            // if access token is passed set-up hook on before request to use in authorization
+            ...('accessToken' in options && options.accessToken
+                ? {
+                      beforeRequest: [
+                          (hookOptions) => {
+                              hookOptions.headers['Authorization'] = `Bearer ${options.accessToken}`
+                          },
+                      ],
+                  }
+                : {}),
+            ...options.hooks,
+        },
     })
 
     return {
@@ -171,6 +178,17 @@ export function makeSalesforceConnector(options: ConnectorOptions) {
          * The result is of type SoqlQueryResult<TSObject>, where TSObject is the type of the Salesforce object being queried.
          */
         soqlQuery: makeSoqlQuery({ gotInstance }),
+        /**
+         * Invoke a custom apex rest api.
+         *
+         * @link For more information regarding apexrest: https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_rest.htm
+         *
+         * @param {ApexRestRequestConfiguration} configuration - configurations required to execute the apex rest call. Note: 'responseType' is set by default to 'json'
+         *
+         * @returns {Promise<unknown | void>} A Promise that resolves to the result of the apex rest request, depending on the request can return undefined.
+         * The result is of type SoqlQueryResult<TSObject>, where TSObject is the type of the Salesforce object being queried.
+         */
+        apexRest: makeApexRest({ gotInstance }),
     }
 }
 

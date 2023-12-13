@@ -14,6 +14,7 @@ The `@bolomio/salesforce-connector` package provides a connector that allows you
 - Execute Composite Request
 - Execute SOQL query
 - Execute SOSL query
+- Interact with custom apex rest api.
 
 ## Installation
 
@@ -41,7 +42,7 @@ const connector = makeSalesforceConnector({
 
 To authorize your requests, you have multiple options:
 
-1. Pass the access token directly in the options when creating the connector instance.
+1. Pass the access token directly in the options when creating the connector instance. _NB: if the access token is passed - a before request hook will be created to set the token in the authentication header._
 
 ```javascript
 const { makeSalesforceConnector } = require('@bolomio/salesforce-connector')
@@ -217,6 +218,76 @@ async function soslQueryExample() {
 
 soslQueryExample()
 
+```
+
+#### apexRest
+Execute a http request against a custom apex rest endpoint.
+[Salesforce Documentation](https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_rest.htm)
+
+**Get Example**
+```javascript
+async function apexRestGetExample() {
+  const companyId = 'bolo-id'
+
+  try {
+    const result = await connector.apexRest({
+      method: 'GET',
+      requestURI: `/bolo-companies/${companyId}`,
+    })
+    console.log('Get result:', result)
+  } catch (error) {
+    console.error('Error executing get request: ', error)
+  }
+}
+
+apexRestGetExample()
+```
+
+**Put Example**
+```javascript
+async function apexRestPutExample() {
+  const companyId = 'bolo-id'
+  
+  // the json body to be used in the request
+  const json = {
+    name: 'bolo'
+  }
+
+  try {
+    const result = await connector.apexRest({
+      method: 'PUT',
+      requestURI: `/bolo-companies/${companyId}`,
+      json
+    })
+    console.log('Put result:', result)
+  } catch (error) {
+    console.error('Error executing put request: ', error)
+  }
+}
+
+apexRestPutExample()
+```
+
+**Post Example with no content response**
+```javascript
+async function apexRestPostWithNoContentResponseExample() {
+  // the json body to be used in the request
+  const json = {
+    name: 'bolo'
+  }
+
+  try {
+    await connector.apexRest({
+      method: 'POST',
+      requestURI: `/bolo-companies/`,
+      json
+    })
+  } catch (error) {
+    console.error('Error executing post request: ', error)
+  }
+}
+
+apexRestPostWithNoContentResponseExample()
 ```
 
 ## Upcoming

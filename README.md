@@ -42,7 +42,7 @@ const connector = makeSalesforceConnector({
 
 To authorize your requests, you have multiple options:
 
-1. Pass the access token directly in the options when creating the connector instance. _NB: if the access token is passed a before request hook will be created to set the token in the authentication header._
+1. Pass the access token directly in the options when creating the connector instance. _NB: if the access token is passed - a before request hook will be created to set the token in the authentication header._
 
 ```javascript
 const { makeSalesforceConnector } = require('@bolomio/salesforce-connector')
@@ -282,7 +282,6 @@ async function apexRestPostWithNoContentResponseExample() {
       requestURI: `/bolo-companies/`,
       json
     })
-    console.log('Post result:', result)
   } catch (error) {
     console.error('Error executing post request: ', error)
   }

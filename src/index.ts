@@ -27,7 +27,7 @@ export function makeSalesforceConnector(options: ConnectorOptions) {
         timeout: options.timeout,
         retry: options.retry,
         hooks: {
-            // if access token is passed set-up hook on before request to use in authorization
+            // if as access token was passed - set-up hook on before request to use in authorization header
             ...('accessToken' in options && options.accessToken
                 ? {
                       beforeRequest: [

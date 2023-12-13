@@ -28,6 +28,7 @@ export function makeApexRest({ gotInstance }: { gotInstance: Got }) {
             options
         )) as Response
 
+        // if status code equals no content, we should not return a response body
         if (response.statusCode === 204) {
             return
         }

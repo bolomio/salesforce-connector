@@ -57,7 +57,7 @@ describe('getKnowledgeArticlesList', () => {
             body: mockResponse,
         })
 
-        const result = await getKnowledgeArticlesList({})
+        const result = await getKnowledgeArticlesList({ language: 'nl-NL' })
 
         expect(result).toEqual(mockResponse)
         expect(gotInstance.get).toHaveBeenCalledWith(
@@ -65,6 +65,7 @@ describe('getKnowledgeArticlesList', () => {
             expect.objectContaining({
                 headers: {
                     'content-type': 'application/json',
+                    'Accept-language': 'nl-NL',
                 },
                 responseType: 'json',
             })

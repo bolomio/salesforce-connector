@@ -1,7 +1,7 @@
 {
   "name": "@bolomio/salesforce-connector",
   "homepage": "https://github.com/bolomio/salesforce-connector#readme",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "functions to interact with the standard salesforce api",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

@@ -18,8 +18,10 @@ export function makeGetKnowledgeArticlesList({ gotInstance }: { gotInstance: Got
      * The result is of type ArticleListResult.
      */
     return async function getKnowledgeArticlesList({
+        language,
         extendOptions = {},
     }: {
+        language: string
         extendOptions?: ExtendableOptions
     }): Promise<ArticleListResult> {
         const got = gotInstance.extend(extendOptions)
@@ -27,6 +29,7 @@ export function makeGetKnowledgeArticlesList({ gotInstance }: { gotInstance: Got
         const options: Options = {
             headers: {
                 'content-type': 'application/json',
+                'Accept-language': language,
             },
             responseType: 'json',
         }

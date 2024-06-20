@@ -11,5 +11,7 @@ describe('index', () => {
         expect(connector).toHaveProperty('upsertSObjectByExternalId')
         expect(connector).toHaveProperty('soqlQuery')
         expect(connector).toHaveProperty('soslQuery')
+        expect(connector).toHaveProperty('apexRest')
+        expect(connector).toHaveProperty('getKnowledgeArticlesList')
     })
 })

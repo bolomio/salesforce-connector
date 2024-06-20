@@ -10,6 +10,7 @@ import { makeCreateCompositeSubRequestUpdateSObject } from './operations/composi
 import { makeCreateCompositeSubRequestUpsertSObjectByExternalId } from './operations/composite/requests/upsert-sobject-by-external-id'
 import { makeCreateCompositeSubRequestSoqlQuery } from './operations/composite/requests/soql-query'
 import { makeApexRest } from './operations/apex-rest'
+import { makeGetKnowledgeArticlesList } from './operations/knowledge-articles/support-knowledge/articles-list'
 
 import type { Got } from 'got'
 import got from 'got'
@@ -189,6 +190,17 @@ export function makeSalesforceConnector(options: ConnectorOptions) {
          * The result is of type SoqlQueryResult<TSObject>, where TSObject is the type of the Salesforce object being queried.
          */
         apexRest: makeApexRest({ gotInstance }),
+        /**
+         * Retrieves a list of Knowledge Articles from Salesforce.
+         * For more information regarding the Knowledge Articles API:
+         * @link https://developer.salesforce.com/docs/atlas.en-us.knowledge_dev.meta/knowledge_dev/knowledge_development_rest_intro.htm
+         * Implements this API:
+         * @link https://developer.salesforce.com/docs/atlas.en-us.knowledge_dev.meta/knowledge_dev/resources_knowledge_support_artlist.htm
+         *
+         * @param {ExtendableOptions}
+         * @returns {Promise<ArticleListResult>} A Promise that resolves to the list of Knowledge Articles.
+         */
+        getKnowledgeArticlesList: makeGetKnowledgeArticlesList({ gotInstance }),
     }
 }
 

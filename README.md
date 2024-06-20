@@ -290,6 +290,30 @@ async function apexRestPostWithNoContentResponseExample() {
 apexRestPostWithNoContentResponseExample()
 ```
 
+#### getKnowledgeArticlesList
+Execute an http request against the Knowledge Article API to list articles.
+[Salesforce Documentation](https://developer.salesforce.com/docs/atlas.en-us.knowledge_dev.meta/knowledge_dev/resources_knowledge_support_artlist.htm)
+
+**Get Knowledge Articles List Example**
+```javascript
+async function getKnowledgeArticlesListExample() {
+  const language = 'en-US'
+
+  try {
+    const result = await connector.getKnowledgeArticlesList({ 
+      language,
+      queryParams: {
+        sort: 'ViewScore',
+        channel: 'Pkb',
+        pageSize: 10,
+      }
+    })
+    console.log('Knowledge result:', result)
+  } catch (error) {
+    console.error('Error executing get request: ', error)
+  }
+}
+```
 ## Upcoming
 
 Other features will be added that use the standard salesforce api:

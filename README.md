@@ -15,6 +15,7 @@ The `@bolomio/salesforce-connector` package provides a connector that allows you
 - Execute SOQL query
 - Execute SOSL query
 - Interact with custom apex rest api.
+- Get Knowledge Articles List using Knowledge Article API
 
 ## Installation
 

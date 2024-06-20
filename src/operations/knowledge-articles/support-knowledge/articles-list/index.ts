@@ -1,11 +1,9 @@
 import type { ArticleListResult } from './types'
 
-import type { ExtendableOptions } from '../../../../types'
+import type { ExtendableOptions, QueryParams } from '../../../../types'
 import { SALESFORCE_REST_API_VERSION } from '../../../../constants'
 
 import type { Got, Options, Response } from 'got'
-
-import type { URLSearchParams } from 'url'
 
 export function makeGetKnowledgeArticlesList({ gotInstance }: { gotInstance: Got }) {
     /**
@@ -25,7 +23,7 @@ export function makeGetKnowledgeArticlesList({ gotInstance }: { gotInstance: Got
         extendOptions = {},
     }: {
         language: string
-        queryParams?: URLSearchParams
+        queryParams?: QueryParams
         extendOptions?: ExtendableOptions
     }): Promise<ArticleListResult> {
         const got = gotInstance.extend(extendOptions)

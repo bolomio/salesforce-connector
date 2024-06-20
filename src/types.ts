@@ -64,3 +64,10 @@ export interface ExtendableOptions {
      */
     hooks?: Hooks
 }
+
+/**
+ * Represents the query parameters for a API request.
+ */
+export interface QueryParams {
+    [key: string]: string | number | boolean | undefined
+}

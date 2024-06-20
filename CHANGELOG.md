@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/bolomio/salesforce-connector/compare/v1.1.4...v1.2.0) (2024-06-20)
+
+
+### Features
+
+* list knowledge articles ([86dcbf7](https://github.com/bolomio/salesforce-connector/commit/86dcbf71f3fe8fa7cd40e22bfe8de10cca0a3ccf))
+
 ## [1.1.4](https://github.com/bolomio/salesforce-connector/compare/v1.1.3...v1.1.4) (2023-12-13)
 
 ## [1.1.3](https://github.com/bolomio/salesforce-connector/compare/v1.1.2...v1.1.3) (2023-12-13)

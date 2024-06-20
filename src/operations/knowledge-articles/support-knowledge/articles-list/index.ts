@@ -1,9 +1,11 @@
 import type { ArticleListResult } from './types'
 
-import { SALESFORCE_REST_API_VERSION } from '../../../../constants'
 import type { ExtendableOptions } from '../../../../types'
+import { SALESFORCE_REST_API_VERSION } from '../../../../constants'
 
 import type { Got, Options, Response } from 'got'
+
+import type { URLSearchParams } from 'url'
 
 export function makeGetKnowledgeArticlesList({ gotInstance }: { gotInstance: Got }) {
     /**
@@ -19,9 +21,11 @@ export function makeGetKnowledgeArticlesList({ gotInstance }: { gotInstance: Got
      */
     return async function getKnowledgeArticlesList({
         language,
+        queryParams,
         extendOptions = {},
     }: {
         language: string
+        queryParams?: URLSearchParams
         extendOptions?: ExtendableOptions
     }): Promise<ArticleListResult> {
         const got = gotInstance.extend(extendOptions)
@@ -32,6 +36,7 @@ export function makeGetKnowledgeArticlesList({ gotInstance }: { gotInstance: Got
                 'Accept-language': language,
             },
             responseType: 'json',
+            searchParams: queryParams,
         }
 
         const response = (await got.get(

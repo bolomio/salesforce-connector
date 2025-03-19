@@ -9,6 +9,7 @@ describe('index', () => {
         expect(connector).toHaveProperty('createSObject')
         expect(connector).toHaveProperty('updateSObject')
         expect(connector).toHaveProperty('upsertSObjectByExternalId')
+        expect(connector).toHaveProperty('deleteSObject')
         expect(connector).toHaveProperty('soqlQuery')
         expect(connector).toHaveProperty('soslQuery')
         expect(connector).toHaveProperty('apexRest')

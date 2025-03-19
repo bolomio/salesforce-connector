@@ -178,6 +178,25 @@ async function upsertSObjectByExternalIdExample() {
 upsertSObjectByExternalIdExample()
 ```
 
+#### deleteSObject
+Delete a record of a specific Salesforce object using the provided data.
+```javascript
+async function deleteSObjectExample() {
+  const sObjectName = 'Account'
+  const recordId = '0011t00000B0lOMAAZ'
+
+  try {
+    await connector.deleteSObject({ sObjectName, recordId })
+    console.log('Record deleted successfully')
+  } catch (error) {
+    console.error('Error deleting record:', error)
+  }
+}
+
+deleteSObjectExample()
+```
+
+
 #### soqlQuery
 Execute a SOQL (Salesforce Object Query Language) query and retrieve the results.
 
@@ -318,7 +337,6 @@ async function getKnowledgeArticlesListExample() {
 ## Upcoming
 
 Other features will be added that use the standard salesforce api:
-- [delete sobject](https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/dome_delete_record.htm)
 - [composite graph support](https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_composite_graph.htm)
 - [composite tree support](https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_composite_sobject_tree.htm)
 - [composite sobject support](https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_composite_sobjects_collections.htm)

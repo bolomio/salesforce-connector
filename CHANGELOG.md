@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/bolomio/salesforce-connector/compare/v1.2.2...v1.3.0) (2025-04-04)
+
+
+### Features
+
+* add delete sObject function ([948929b](https://github.com/bolomio/salesforce-connector/commit/948929b9c3fb6dda4f6610e1f020bae8e8bed629))
+
 ## [1.2.2](https://github.com/bolomio/salesforce-connector/compare/v1.2.1...v1.2.2) (2024-06-20)
 
 ## [1.2.1](https://github.com/bolomio/salesforce-connector/compare/v1.2.0...v1.2.1) (2024-06-20)

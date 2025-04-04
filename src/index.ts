@@ -11,6 +11,7 @@ import { makeCreateCompositeSubRequestUpsertSObjectByExternalId } from './operat
 import { makeCreateCompositeSubRequestSoqlQuery } from './operations/composite/requests/soql-query'
 import { makeApexRest } from './operations/apex-rest'
 import { makeGetKnowledgeArticlesList } from './operations/knowledge-articles/support-knowledge/articles-list'
+import { makeDeleteSObject } from './operations/delete-sobject'
 
 import type { Got } from 'got'
 import got from 'got'
@@ -153,6 +154,17 @@ export function makeSalesforceConnector(options: ConnectorOptions) {
          * @returns {Promise<UpsertSObjectResult>} A Promise that resolves to the result of the upsert operation.
          */
         upsertSObjectByExternalId: makeUpsertSObjectByExternalId({ gotInstance }),
+        /**
+         * Deletes a record of a specific Salesforce object using the provided data.
+         *
+         * Implements this api:
+         * @link https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/dome_update_fields.htm
+         * @param {string} sObjectName - The name of the Salesforce object to update a record for.
+         * @param {string} recordId - The ID of the record that will be updated.
+         * @param {ExtendableOptions} extendOptions - Additional options to extend the HTTP request.
+         * @returns {Promise<void>} No returns for successful operations, as Salesforce returns 204 - No Content.
+         */
+        deleteSObject: makeDeleteSObject({ gotInstance }),
         /**
          * Executes a SOSL (Salesforce Object Search Language) query and retrieves the results.
          * For more information regarding sosl:

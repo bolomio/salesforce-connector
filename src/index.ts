@@ -12,6 +12,7 @@ import { makeCreateCompositeSubRequestSoqlQuery } from './operations/composite/r
 import { makeApexRest } from './operations/apex-rest'
 import { makeGetKnowledgeArticlesList } from './operations/knowledge-articles/support-knowledge/articles-list'
 import { makeDeleteSObject } from './operations/delete-sobject'
+import { makeCreateCompositeSubRequestDeleteSObject } from './operations/composite/requests/delete-sobject'
 
 import type { Got } from 'got'
 import got from 'got'
@@ -117,6 +118,20 @@ export function makeSalesforceConnector(options: ConnectorOptions) {
             upsertSObjectByExternalId: makeCreateCompositeSubRequestUpsertSObjectByExternalId({
                 gotInstance,
             }),
+
+            /**
+             * Creates a composite sub request for deleting a record of a specific Salesforce object.
+             *
+             * Implements this api:
+             * @link https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/dome_delete_record.htm
+             *
+             * @param {string} referenceId - The reference ID specified in the subrequest.
+             * @param {string} sObjectName - The name of the Salesforce object to delete a record for.
+             * @param {string} recordId - The ID of the record that will be deleted.
+             * @param {ExtendableOptions} extendOptions - Additional options to extend the HTTP request.
+             * @returns {Promise<CompositeSubRequest>} A Promise that resolves to the result of the delete operation.
+             */
+            deleteSObject: makeCreateCompositeSubRequestDeleteSObject({ gotInstance }),
         },
         /**
          * Creates a new record of a specific Salesforce object using the provided data.
@@ -158,9 +173,9 @@ export function makeSalesforceConnector(options: ConnectorOptions) {
          * Deletes a record of a specific Salesforce object using the provided data.
          *
          * Implements this api:
-         * @link https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/dome_update_fields.htm
-         * @param {string} sObjectName - The name of the Salesforce object to update a record for.
-         * @param {string} recordId - The ID of the record that will be updated.
+         * @link https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/dome_delete_record.htm
+         * @param {string} sObjectName - The name of the Salesforce object to delete a record for.
+         * @param {string} recordId - The ID of the record that will be deleted.
          * @param {ExtendableOptions} extendOptions - Additional options to extend the HTTP request.
          * @returns {Promise<void>} No returns for successful operations, as Salesforce returns 204 - No Content.
          */

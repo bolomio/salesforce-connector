@@ -1,3 +1,10 @@
+# [1.4.0](https://github.com/bolomio/salesforce-connector/compare/v1.3.0...v1.4.0) (2025-04-08)
+
+
+### Features
+
+* add deleteSObject to composite request ([a2c5c97](https://github.com/bolomio/salesforce-connector/commit/a2c5c9759c4236fd69b7d6da609b45aa1176d462))
+
 # [1.3.0](https://github.com/bolomio/salesforce-connector/compare/v1.2.2...v1.3.0) (2025-04-04)
 
 

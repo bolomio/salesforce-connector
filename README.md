@@ -11,6 +11,7 @@ The `@bolomio/salesforce-connector` package provides a connector that allows you
 - Create SObject Record
 - Update SObject Record
 - Upsert SObject Record by External ID
+- Delete SObject Record
 - Execute Composite Request
 - Execute SOQL query
 - Execute SOSL query
